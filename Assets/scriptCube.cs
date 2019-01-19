@@ -19,5 +19,14 @@ public class scriptCube : MonoBehaviour
 
         transform.Translate(Input.GetAxis("Horizontal") * 10f * zamanKatsayisi, 0, 0);
 
+        if (transform.position.x < -2.8f)
+        {
+            transform.position = new Vector3(-2.8f, transform.position.y, transform.position.z);
+        }
+        else if (transform.position.x > 2.8f)
+        {
+            transform.position = new Vector3(2.8f, transform.position.y, transform.position.z);
+        }
+
     }
 }
