@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class scriptBrick : MonoBehaviour
 {
-    static int numberBrick;
+    static int numberBrick = 0;
+
+    public int hitPoint = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,18 @@ public class scriptBrick : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        hitPoint--;
+
+        if (hitPoint <= 0)
+        {
+            Die();
+        }
+       
+    }
+
+    void Die()
+    {
+
         Destroy(gameObject);
         numberBrick--;
 
@@ -27,5 +41,6 @@ public class scriptBrick : MonoBehaviour
         {
             Debug.Log("GAME OVER");
         }
+
     }
 }
