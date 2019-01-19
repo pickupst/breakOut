@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class scriptCube : MonoBehaviour
 {
+    float ballSpeed = 4;
     float zamanKatsayisi;
 
-    public GameObject prefabBall;
+    public GameObject prefabBall = null;
 
     GameObject attachedBall;
     // Start is called before the first frame update
     void Start()
     {
-        attachedBall = (GameObject) Instantiate(prefabBall, transform.position + new Vector3(0, 0.2f, 0), Quaternion.identity);
+        attachedBall = (GameObject) Instantiate(prefabBall, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -20,7 +21,18 @@ public class scriptCube : MonoBehaviour
     {
         zamanKatsayisi = Time.deltaTime;
 
-        attachedBall.GetComponent<Rigidbody>().AddForce(0, 20f, 0);
+        if (attachedBall)
+        {
+
+            attachedBall.GetComponent<Rigidbody>().position = transform.position + new Vector3(0, 0.7f, 0);
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                attachedBall.GetComponent<Rigidbody>().isKinematic = false;
+                attachedBall.GetComponent<Rigidbody>().AddForce(0, ballSpeed * 10000 * zamanKatsayisi, 0);
+                attachedBall = null;
+            }
+        }
 
         move();
 
