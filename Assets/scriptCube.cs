@@ -17,14 +17,7 @@ public class scriptCube : MonoBehaviour
     {
         zamanKatsayisi = Time.deltaTime;
 
-        if (Input.GetAxis("Horizontal") < 0)
-        {
-            transform.Translate(-10f * zamanKatsayisi, 0, 0);
-        }
-        if (Input.GetAxis("Horizontal") > 0)
-        {
-            transform.Translate(10f * zamanKatsayisi, 0, 0);
-        }
+        transform.Translate(Input.GetAxis("Horizontal") * 10f * zamanKatsayisi, 0, 0);
 
     }
 }
