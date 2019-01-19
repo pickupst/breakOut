@@ -21,21 +21,23 @@ public class scriptCube : MonoBehaviour
     {
         zamanKatsayisi = Time.deltaTime;
 
-        if (attachedBall)
-        {
-
-            attachedBall.GetComponent<Rigidbody>().position = transform.position + new Vector3(0, 0.7f, 0);
-
-            if (Input.GetButtonDown("Jump"))
-            {
-                attachedBall.GetComponent<Rigidbody>().isKinematic = false;
-                attachedBall.GetComponent<Rigidbody>().AddForce(0, ballSpeed * 10000 * zamanKatsayisi, 0);
-                attachedBall = null;
-            }
-        }
+        attachedBallMove();
 
         move();
 
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            if (contact.thisCollider == GetComponent<Collider>())
+            {
+                float slip = contact.point.x - transform.position.x;
+                contact.otherCollider.GetComponent<Rigidbody>().AddForce((ballSpeed * 10000 * zamanKatsayisi) * slip, 0, 0);
+            }
+        }
     }
 
     private void move()
@@ -52,5 +54,22 @@ public class scriptCube : MonoBehaviour
             transform.position = new Vector3(2.8f, transform.position.y, transform.position.z);
         }
 
+    }
+
+    private void attachedBallMove()
+    {
+
+        if (attachedBall)
+        {
+
+            attachedBall.GetComponent<Rigidbody>().position = transform.position + new Vector3(0, 0.7f, 0);
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                attachedBall.GetComponent<Rigidbody>().isKinematic = false;
+                attachedBall.GetComponent<Rigidbody>().AddForce(ballSpeed * 10000 * zamanKatsayisi * Input.GetAxis("Horizontal"), ballSpeed * 10000 * zamanKatsayisi, 0);
+                attachedBall = null;
+            }
+        }
     }
 }
