@@ -9,15 +9,25 @@ public class scriptPaddle : MonoBehaviour
     float zamanKatsayisi;
 
     int Lives = 4;
+    int Score = 0;
 
     public GameObject prefabBall = null;
     public Canvas myCanvas;
+    public Text scoreText;
 
     GameObject attachedBall;
     // Start is called before the first frame update
     void Start()
     {
         spawnBall();
+    }
+
+    public void addScore(int v)
+    {
+
+        Score += v;
+        scoreText.text = "Score: " + Score;
+
     }
 
     void spawnBall()

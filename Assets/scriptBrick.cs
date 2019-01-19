@@ -7,6 +7,7 @@ public class scriptBrick : MonoBehaviour
     static int numberBrick = 0;
 
     public int hitPoint = 1;
+    public int point = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class scriptBrick : MonoBehaviour
     {
 
         Destroy(gameObject);
+        GameObject.Find("Paddle").GetComponent<scriptPaddle>().addScore(10 * point);
         numberBrick--;
 
         if (numberBrick <= 0)
