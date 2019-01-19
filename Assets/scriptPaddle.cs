@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class scriptPaddle : MonoBehaviour
 {
     float ballSpeed = 4;
     float zamanKatsayisi;
 
+    int Lives = 4;
+
     public GameObject prefabBall = null;
+    public Canvas myCanvas;
 
     GameObject attachedBall;
     // Start is called before the first frame update
@@ -26,6 +30,8 @@ public class scriptPaddle : MonoBehaviour
     public void LooseLife()
     {
 
+        Lives--;
+        myCanvas.GetComponentInChildren<Text>().text = "Lives: " + Lives;
         spawnBall();
 
     }
