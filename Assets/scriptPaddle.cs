@@ -19,6 +19,13 @@ public class scriptPaddle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(myCanvas);
+        spawnBall();
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
         spawnBall();
     }
 

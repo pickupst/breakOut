@@ -41,7 +41,7 @@ public class scriptBrick : MonoBehaviour
 
         if (numberBrick <= 0)
         {
-            Debug.Log("GAME OVER");
+            Application.LoadLevel("level2");
         }
 
     }
