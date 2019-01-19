@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scriptCube : MonoBehaviour
+public class scriptPaddle : MonoBehaviour
 {
     float ballSpeed = 4;
     float zamanKatsayisi;
@@ -13,9 +13,22 @@ public class scriptCube : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        attachedBall = (GameObject) Instantiate(prefabBall, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
+        spawnBall();
     }
 
+    void spawnBall()
+    {
+
+        attachedBall = (GameObject)Instantiate(prefabBall, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
+
+    }
+
+    public void LooseLife()
+    {
+
+        spawnBall();
+
+    }
     // Update is called once per frame
     void Update()
     {
