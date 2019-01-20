@@ -24,9 +24,18 @@ public class scriptPaddle : MonoBehaviour
         spawnBall();
     }
 
+    private void OnDestroy()
+    {
+        Destroy(attachedBall);
+    }
+
     private void OnLevelWasLoaded(int level)
     {
-        spawnBall();
+        if (Application.loadedLevelName != "level1")
+        {
+            spawnBall();
+        }
+     
     }
 
     public void addScore(int v)
@@ -48,6 +57,12 @@ public class scriptPaddle : MonoBehaviour
     {
 
         Lives--;
+
+        if (Lives <= 0)
+        {
+            Application.LoadLevel(2);
+        }
+
         myCanvas.GetComponentInChildren<Text>().text = "Lives: " + Lives;
         spawnBall();
 
